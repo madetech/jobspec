@@ -31,8 +31,8 @@ module JobSpec
       @expectations.concat(role_expectations.to_a)
     end
 
-    def expected(expectation)
-      @expectations << expectation
+    def expected(expectation, description = nil)
+      @expectations << { expectation: expectation, description: description }
     end
 
     def expectations
