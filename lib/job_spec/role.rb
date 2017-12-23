@@ -46,7 +46,7 @@ module JobSpec
       end
 
       def self.to_a
-        @role.to_a
+        @role.expectations
       end
     end
   end

@@ -15,12 +15,12 @@ describe JobSpec::Role do
 
     it 'should allow you to set expectations' do
       subject.expected 'to be cool'
-      expect(subject.to_a).to include('to be cool')
+      expect(subject.expectations).to include('to be cool')
     end
 
     it 'should allow you to include shared expectations' do
       subject.include SharedExpectationsExample
-      expect(subject.to_a).to include('to shared these')
+      expect(subject.expectations).to include('to shared these')
     end
   end
 
@@ -32,7 +32,7 @@ describe JobSpec::Role do
     end
 
     it 'should add role to definitions list' do
-      expect(described_class.definitions.first.to_a).to include('to be cool')
+      expect(described_class.definitions.first.expectations).to include('to be cool')
     end
   end
 end
