@@ -15,6 +15,10 @@ module JobSpec
       instance_eval(&block) if block_given?
     end
 
+    def description(description = nil)
+      @description = @description || description
+    end
+
     def salary(range = nil)
       @salary = @salary || range
     end
