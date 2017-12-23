@@ -15,7 +15,8 @@ Gem::Specification.new do |spec|
   spec.executables   = ['jobspec']
   spec.require_paths = ['lib']
 
-  spec.add_development_dependency 'bundler'
+  spec.add_dependency 'bundler'
+  spec.add_dependency 'thor'
   spec.add_development_dependency 'rake'
   spec.add_development_dependency 'rspec'
 end
