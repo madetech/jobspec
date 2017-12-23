@@ -40,9 +40,9 @@ module JobSpec
     end
 
     class Expectations
-      def self.expected(expectation)
+      def self.expected(expectation, description = nil)
         @role ||= Role.new(self.class.name)
-        @role.expected(expectation)
+        @role.expected(expectation, description)
       end
 
       def self.to_a
