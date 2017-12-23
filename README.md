@@ -17,8 +17,8 @@ gem install job_spec
 Create a job specification for a role:
 
 ``` ruby
-JobSpec::Role.definition "Engineer" do
-  expected "to be cool"
+JobSpec::Role.definition 'Engineer' do
+  expected 'to be cool'
 end
 ```
 
