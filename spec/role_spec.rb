@@ -3,6 +3,10 @@ describe JobSpec::Role do
   context 'when defining role' do
     subject { described_class.new('Engineer') }
 
+    it 'should have a name' do
+      expect(subject.name).to eq('Engineer')
+    end
+
     it 'should allow you to set a description' do
       subject.description 'Our Engineers are the core of our business.'
       expect(subject.description).to eq('Our Engineers are the core of our business.')
