@@ -1,5 +1,7 @@
 # JobSpec
 
+[![Gem Version](https://badge.fury.io/rb/job_spec.svg)](https://badge.fury.io/rb/job_spec)
+
 A ruby gem for defining job specifications in a nice DSL that enables composition of expectations between roles.
 
 ## Installing
