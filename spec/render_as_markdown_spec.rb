@@ -18,25 +18,44 @@ describe JobSpec::RenderAsMarkdown do
       expect(subject.render).to eq('# Engineer')
     end
 
-    it 'should display expectation as a h2' do
-      role.expected 'to be a great at TDD'
-      expect(subject.render).to include('## To be a great at TDD')
-
-      role.expected 'to be very awesome'
-      expect(subject.render).to include('## To be a great at TDD')
-      expect(subject.render).to include('## To be very awesome')
+    it 'should not display expectations heading if no expectations' do
+      expect(subject.render).not_to include('## Expectations')
     end
 
-    it 'should display expectation as a h2 and description underneath' do
+    it 'should display expectations heading in h2' do
+      role.expected 'to be a great at TDD'
+      expect(subject.render).to include('## Expectations')
+    end
+
+    it 'should display expectation as a h3' do
+      role.expected 'to be a great at TDD'
+      expect(subject.render).to include('### To be a great at TDD')
+
+      role.expected 'to be very awesome'
+      expect(subject.render).to include('### To be a great at TDD')
+      expect(subject.render).to include('### To be very awesome')
+    end
+
+    it 'should display expectation as a h3 and description underneath' do
       role.expected 'to be a great person', 'Because its great to be great.'
       expect(subject.render).to include(
-        "## To be a great person\n\nBecause its great to be great."
+        "### To be a great person\n\nBecause its great to be great."
       )
 
       role.expected 'to be very awesome', 'Very awesome.'
       expect(subject.render).to include(
-        "## To be a great person\n\nBecause its great to be great.\n\n## To be very awesome\n\nVery awesome."
+        "### To be a great person\n\nBecause its great to be great.\n\n### To be very awesome\n\nVery awesome."
       )
+    end
+
+    it 'should display included group as h2' do
+      role.include SharedExpectationsExample, as: 'Shared Expectations'
+      expect(subject.render).to include('## Shared Expectations')
+    end
+
+    it 'should display included group expectations as h3' do
+      role.include SharedExpectationsExample, as: 'Shared Expectations'
+      expect(subject.render).to include('### To shared these')
     end
   end
 end

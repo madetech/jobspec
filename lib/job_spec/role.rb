@@ -27,12 +27,12 @@ module JobSpec
       @salary = @salary || range
     end
 
-    def include(role_expectations)
-      @expectations.concat(role_expectations.to_a)
+    def include(role_expectations, as:)
+      @expectations.concat(role_expectations.to_a.map { |expectation| expectation.merge(group: as) })
     end
 
     def expected(expectation, description = nil)
-      @expectations << { expectation: expectation, description: description }
+      @expectations << { expectation: expectation, description: description, group: nil }
     end
 
     def expectations

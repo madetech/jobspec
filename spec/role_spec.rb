@@ -37,10 +37,11 @@ describe JobSpec::Role do
       )
     end
 
-    it 'should allow you to include shared expectations' do
-      subject.include SharedExpectationsExample
+      it 'should allow you to include shared expectations' do
+      subject.include SharedExpectationsExample, as: 'Shared Expectations'
       expect(subject.expectations).to include(
         a_hash_including(
+          group: 'Shared Expectations',
           expectation: 'to shared these',
           description: 'Nice.'
         )
