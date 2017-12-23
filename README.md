@@ -23,7 +23,7 @@ end
 Save that into a file `roles/engineer.rb`. Now from the command line in the directory that contains the `roles/` directory:
 
 ```
-jobspec build roles
+jobspec build --in=roles --out=dist
 ```
 
 And you will see your job roles printed out.
