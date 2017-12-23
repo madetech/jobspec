@@ -1,3 +1,3 @@
 class SeniorEngineerExpectations < JobSpec::Role::Expectations
-  expected "to senior"
+  expected 'to senior'
 end

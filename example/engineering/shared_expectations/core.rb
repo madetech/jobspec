@@ -1,3 +1,3 @@
 class CoreEngineerExpectations < JobSpec::Role::Expectations
-  expected "to engineer"
+  expected 'to engineer'
 end
