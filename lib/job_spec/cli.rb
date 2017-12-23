@@ -42,7 +42,7 @@ def role_files(dir)
 end
 
 def safe_role_name(role)
-  "#{role.name.downcase.gsub(/[^a-z]+/, '')}.md"
+  "#{role.name.downcase.gsub(' ', '_').gsub(/[^a-z_]+/, '')}.md"
 end
 
 def safe_role_out_path(role)
