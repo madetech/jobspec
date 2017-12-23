@@ -13,7 +13,7 @@ module JobSpec
 
       role.expectations.map(&:values).each do |(expectation, description)|
         markdown << "## #{expectation.capitalize}"
-        markdown << description.capitalize unless description.nil? 
+        markdown << description unless description.nil? 
       end
 
       markdown.join("\n\n")
