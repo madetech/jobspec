@@ -19,11 +19,11 @@ describe JobSpec::RenderAsMarkdown do
     end
 
     it 'should display expectation as a h2' do
-      role.expected 'to be a great person'
-      expect(subject.render).to include('## To be a great person')
+      role.expected 'to be a great at TDD'
+      expect(subject.render).to include('## To be a great at TDD')
 
       role.expected 'to be very awesome'
-      expect(subject.render).to include('## To be a great person')
+      expect(subject.render).to include('## To be a great at TDD')
       expect(subject.render).to include('## To be very awesome')
     end
 

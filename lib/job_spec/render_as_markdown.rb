@@ -12,8 +12,8 @@ module JobSpec
       markdown << role.description unless role.description.nil?
 
       role.expectations.map(&:values).each do |(expectation, description)|
-        markdown << "## #{expectation.capitalize}"
-        markdown << description unless description.nil? 
+        markdown << "## #{expectation[0].upcase}#{expectation[1..expectation.length]}"
+        markdown << description unless description.nil?
       end
 
       markdown.join("\n\n")
