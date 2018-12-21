@@ -87,6 +87,10 @@ describe JobSpec::Role do
       ).to be_nil
     end
 
+    it 'can handle no expectations' do
+      described_class.add_expectations([])
+    end
+
     it 'should add role to definitions list' do
       described_class.add_expectations(
         [

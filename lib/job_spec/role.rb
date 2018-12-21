@@ -10,8 +10,6 @@ module JobSpec
     end
 
     def self.add_expectations(role_expectations)
-      expectation = role_expectations.first[:expectations].first
-
       role_expectations.each do |role_expectation|
         role = @definitions[role_expectation[:name]]
         role_expectation[:expectations].each do |e|
