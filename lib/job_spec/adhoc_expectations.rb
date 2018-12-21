@@ -10,6 +10,8 @@ module JobSpec
     end
 
     def self.roles
+      return [] if @expectations.nil?
+
       roles = {}
       @expectations.each do |expectation|
         expectation.to_a.each do |role_expectation|

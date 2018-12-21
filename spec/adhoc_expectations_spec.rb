@@ -3,6 +3,10 @@ describe JobSpec::AdhocExpectations do
     described_class.clear!
   end
 
+  it 'can response with no roles' do
+    expect(described_class.roles).to eq([])
+  end
+
   it 'can combine one expectation into two roles (example 1)' do
     described_class.define 'to be awesome!' do
       description 'awesomeness'
