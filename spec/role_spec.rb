@@ -1,4 +1,3 @@
-
 describe JobSpec::Role do
   context 'when defining role' do
     subject { described_class.new('Engineer') }
@@ -19,9 +18,11 @@ describe JobSpec::Role do
 
     it 'should allow you to set expectations' do
       subject.expected 'to be cool'
-      expect(subject.expectations).to include(
-        a_hash_including(
-          expectation: 'to be cool'
+      expect(subject.expectations).to(
+        include(
+          a_hash_including(
+            expectation: 'to be cool'
+          )
         )
       )
     end
@@ -29,21 +30,25 @@ describe JobSpec::Role do
     it 'should allow you to set expectations with a description' do
       subject.expected 'To be cool',
                        'A description of the expectation.'
-      expect(subject.expectations).to include(
-        a_hash_including(
-          expectation: 'To be cool',
-          description: 'A description of the expectation.'
+      expect(subject.expectations).to(
+        include(
+          a_hash_including(
+            expectation: 'To be cool',
+            description: 'A description of the expectation.'
+          )
         )
       )
     end
 
-      it 'should allow you to include shared expectations' do
+    it 'should allow you to include shared expectations' do
       subject.include SharedExpectationsExample, as: 'Shared Expectations'
-      expect(subject.expectations).to include(
-        a_hash_including(
-          group: 'Shared Expectations',
-          expectation: 'to shared these',
-          description: 'Nice.'
+      expect(subject.expectations).to(
+        include(
+          a_hash_including(
+            group: 'Shared Expectations',
+            expectation: 'to shared these',
+            description: 'Nice.'
+          )
         )
       )
     end
@@ -57,9 +62,95 @@ describe JobSpec::Role do
     end
 
     it 'should add role to definitions list' do
-      expect(described_class.definitions.first.expectations).to include(
-        a_hash_including(
-          expectation: 'to be cool'
+      expect(described_class.definitions.first.expectations).to(
+        include(
+          a_hash_including(
+            expectation: 'to be cool'
+          )
+        )
+      )
+    end
+  end
+
+  context 'when adding extra expectations' do
+    before do
+      described_class.definition('Engineer') {}
+      described_class.definition('Senior Engineer') {}
+
+    end
+
+    it 'should return nil' do
+      expect(
+        described_class.add_expectations(
+          [{ name: 'Engineer', expectations: [] }]
+        )
+      ).to be_nil
+    end
+
+    it 'should add role to definitions list' do
+      described_class.add_expectations(
+        [
+          {
+            name: 'Engineer',
+            expectations: [
+              {
+                expectation: 'to be awesome',
+                description: 'really awesome'
+              }
+            ]
+          }
+        ]
+      )
+
+      expect(described_class.definitions.first.expectations).to(
+        include(
+          a_hash_including(
+            expectation: 'to be awesome',
+            description: 'really awesome'
+          )
+        )
+      )
+    end
+
+    it 'should add role to definitions list' do
+      described_class.add_expectations(
+        [
+          {
+            name: 'Engineer',
+            expectations: [
+              {
+                expectation: 'to be present',
+                description: 'really present'
+              }
+            ]
+          },
+          {
+            name: 'Senior Engineer',
+            expectations: [
+              {
+                expectation: 'to be present',
+                description: 'really present'
+              }
+            ]
+          }
+        ]
+      )
+
+      expect(described_class.definitions.first.expectations).to(
+        include(
+          a_hash_including(
+            expectation: 'to be present',
+            description: 'really present'
+          )
+        )
+      )
+
+      expect(described_class.definitions[1].expectations).to(
+        include(
+          a_hash_including(
+            expectation: 'to be present',
+            description: 'really present'
+          )
         )
       )
     end

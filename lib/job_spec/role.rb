@@ -1,12 +1,25 @@
 module JobSpec
   class Role
     def self.definition(name, &block)
-      @definitions ||= []
-      @definitions << new(name, &block)
+      @definitions ||= {}
+      @definitions[name] = new(name, &block)
     end
 
     def self.definitions
-      @definitions
+      @definitions.values
+    end
+
+    def self.add_expectations(role_expectations)
+      expectation = role_expectations.first[:expectations].first
+
+      role_expectations.each do |role_expectation|
+        role = @definitions[role_expectation[:name]]
+        role_expectation[:expectations].each do |e|
+          role.expected(e[:expectation], e[:description])
+        end
+      end
+
+      nil
     end
 
     def initialize(name, &block)

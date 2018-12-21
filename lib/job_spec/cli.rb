@@ -13,6 +13,7 @@ module JobSpec
       end
 
       FileUtils.mkdir_p(path_relative_to_pwd(options[:out]))
+      JobSpec::Role.add_expectations(JobSpec::AdhocExpectations.roles)
       Role.definitions.each do |role|
         puts "Saving #{role.name} to #{safe_role_out_path(role)}..."
         File.write(safe_role_out_path(role), RenderAsMarkdown.new(role).render)

@@ -4,8 +4,8 @@ require File.join(LIB, 'job_spec/version')
 Gem::Specification.new do |spec|
   spec.name          = 'job_spec'
   spec.version       = JobSpec::VERSION
-  spec.authors       = ['Luke Morton']
-  spec.email         = ['luke@madetech.com']
+  spec.authors       = ['Luke Morton', 'Craig J. Bass']
+  spec.email         = ['luke@madetech.com', 'craig@madetech.com']
 
   spec.summary       = %q{Define job specs in ruby and publish to markdown}
   spec.homepage      = 'https://github.com/madetech/job_spec'
